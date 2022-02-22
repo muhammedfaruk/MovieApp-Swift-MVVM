@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (5.5.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
+  - UIFontComplete (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.5)
+  - NVActivityIndicatorView
+  - UIFontComplete
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - NVActivityIndicatorView
+    - UIFontComplete
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
+  UIFontComplete: 843cb7b58fd6503b3918447918ea6daaeaceccff
+
+PODFILE CHECKSUM: 0d41f07ef59ab5eba60f370e40727b13a4acfa31
+
+COCOAPODS: 1.11.2
