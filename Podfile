@@ -9,3 +9,7 @@ pod 'Alamofire', '~> 5.5'
 pod 'UIFontComplete'
 pod 'NVActivityIndicatorView'
 end
+
+
+
+

@@ -9,7 +9,7 @@ import Foundation
 
 final class MainViewModel {
     
-    var mainVCOutPut : MainVCOutPut?
+    weak var mainVCOutPut : MainVCOutPut?
    
     var isLoading : Bool = false
     
@@ -21,6 +21,7 @@ final class MainViewModel {
         dispathGroup.enter()
         NetworkManager.shared.getMovieData(serviceType: .popular) { movieInfo, error in
             guard error == nil else {print(error!)
+                dispathGroup.leave()
                 return}
             self.mainVCOutPut?.saveMovies(movieType: .popularMovies, list: movieInfo!)
             dispathGroup.leave()
@@ -30,6 +31,7 @@ final class MainViewModel {
         dispathGroup.enter()
         NetworkManager.shared.getMovieData(serviceType: .topRated) { movieInfo, error in
             guard error == nil else {print(error!)
+                dispathGroup.leave()
                 return}
             self.mainVCOutPut?.saveMovies(movieType: .topRatedMovies, list: movieInfo!)
             dispathGroup.leave()
@@ -39,6 +41,7 @@ final class MainViewModel {
         dispathGroup.enter()
         NetworkManager.shared.getMovieData(serviceType: .upcoming) { movieInfo, error in
             guard error == nil else {print(error!)
+                dispathGroup.leave()
                 return}
             self.mainVCOutPut?.saveMovies(movieType: .upcomingMovies, list: movieInfo!)
             dispathGroup.leave()
@@ -48,6 +51,7 @@ final class MainViewModel {
         dispathGroup.enter()
         NetworkManager.shared.getMovieData(serviceType: .latest) { movieInfo, error in
             guard error == nil else {print(error!)
+                dispathGroup.leave()
                 return}
             self.mainVCOutPut?.saveMovies(movieType: .latestMovies, list: movieInfo!)
             dispathGroup.leave()

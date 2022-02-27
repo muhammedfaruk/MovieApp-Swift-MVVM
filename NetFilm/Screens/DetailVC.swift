@@ -8,7 +8,7 @@
 import UIKit
 import NVActivityIndicatorView
 
-protocol DetailVCOutPut {
+protocol DetailVCOutPut: AnyObject {
     func saveDetails(detail: MovieDetail)
     func saveSimilarMovies(movies: [MovieInfo])
     func changeisLoading(isloading : Bool)
@@ -18,7 +18,7 @@ class DetailVC: UIViewController {
     
     var id : Int = 0    
     let headerView = UIView()
-    lazy var viewModel : DetailViewModel! = DetailViewModel()
+    lazy var viewModel : DetailViewModel = DetailViewModel()
     
     var collectionView : UICollectionView!
     var similarMovieTitle = MyLabel(textSize: 30, color: .white, alignment: .left)

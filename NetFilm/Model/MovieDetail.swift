@@ -88,3 +88,4 @@ struct SpokenLanguage: Codable {
         case name
     }
 }
+

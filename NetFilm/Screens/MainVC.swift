@@ -8,7 +8,7 @@
 import UIKit
 import NVActivityIndicatorView
 
-protocol MainVCOutPut {
+protocol MainVCOutPut: AnyObject {
     func saveMovies(movieType:MovieTypes, list: [MovieInfo])
     func changeLoadingAndReloadData(isLoading: Bool)
 }

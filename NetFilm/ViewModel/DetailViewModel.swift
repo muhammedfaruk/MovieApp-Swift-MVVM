@@ -10,7 +10,7 @@ import Foundation
 final class DetailViewModel {
     
     var similarMovies : [MovieInfo] = []
-    var detailOutPut : DetailVCOutPut!
+    weak var detailOutPut : DetailVCOutPut?
     var isLoading : Bool = false
     
     func fetchDetail(movieID: Int) {
@@ -20,7 +20,7 @@ final class DetailViewModel {
             
             guard error == nil else {print(error!)
                 return}
-            self.detailOutPut.saveDetails(detail: detail!)
+            self.detailOutPut?.saveDetails(detail: detail!)
             self.changeLoading()
         }
     }
@@ -29,13 +29,13 @@ final class DetailViewModel {
         NetworkManager.shared.getSimilarMovies(id: movieID) { movies, error in
             guard error == nil else {print(error!)
                 return}
-            self.detailOutPut.saveSimilarMovies(movies: movies!)
+            self.detailOutPut?.saveSimilarMovies(movies: movies!)
         }
     }
     
     func changeLoading(){
         isLoading = !isLoading
-        detailOutPut.changeisLoading(isloading: isLoading)
+        detailOutPut?.changeisLoading(isloading: isLoading)
     }
     
 }
