@@ -6,6 +6,7 @@ target 'NetFilm' do
   use_frameworks!
 
 pod 'Alamofire', '~> 5.5'
+pod 'AlamofireImage', '4.1'
 pod 'UIFontComplete'
 pod 'NVActivityIndicatorView'
 end

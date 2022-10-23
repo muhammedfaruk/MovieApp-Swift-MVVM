@@ -9,27 +9,34 @@ import Foundation
 
 final class DetailViewModel {
     
-    var similarMovies : [MovieInfo] = []
+    lazy var serviceEndpoint: ServiceEndpoint = {
+        return ServiceEndpoint()
+    }()
+        
     weak var detailOutPut : DetailVCOutPut?
     var isLoading : Bool = false
     
-    func fetchDetail(movieID: Int) {
-        changeLoading()
-        NetworkManager.shared.getMovieDetail(id: movieID) {[weak self] detail, error in
-            guard let self = self else {return}
-            
-            guard error == nil else {print(error!)
-                return}
-            self.detailOutPut?.saveDetails(detail: detail!)
-            self.changeLoading()
+    
+    func fetchDetail(movieID: Int) {        
+        serviceEndpoint.getMovieDetail(id: movieID, page: "1") { result in
+            switch result {
+            case .success(let data):
+                self.detailOutPut?.saveDetails(detail: data)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        
         }
     }
     
     func fetchSimilarMovies(movieID: Int){
-        NetworkManager.shared.getSimilarMovies(id: movieID) { movies, error in
-            guard error == nil else {print(error!)
-                return}
-            self.detailOutPut?.saveSimilarMovies(movies: movies!)
+        serviceEndpoint.getSimilarMovies(id: movieID) { result in
+            switch result {
+            case .success(let data):
+                self.detailOutPut?.saveSimilarMovies(movies: data.results)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     

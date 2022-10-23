@@ -33,10 +33,6 @@ class MyImage: UIImageView {
     }
     
     func downloadImage(posterPath: String) {
-        let posterURL = "https://image.tmdb.org/t/p/w500" + posterPath
-        NetworkManager.shared.getImage(fromUrl: posterURL) { image, error in
-            guard error == nil else {return}
-            self.image = image
-        }
+        imageFromUrl(urlString: posterPath, placeHolderImage: UIImage())
     }
 }

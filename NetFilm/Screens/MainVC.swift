@@ -33,7 +33,6 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         makeDarkModeAllView()
-        configureCells()
         
         viewModel.mainVCOutPut = self
         viewModel.fetchData()
@@ -49,6 +48,7 @@ class MainVC: UIViewController {
                            CellItem(cellType: .topRatedMovies, movieList: topRatedMovieList),
                            CellItem(cellType: .latestMovies, movieList: latestMoviesList),
                            CellItem(cellType: .upcomingMovies, movieList: upcomingMoviesList)]
+        collectionView.reloadData()
     }
     
     func configureIndicatorView(){
