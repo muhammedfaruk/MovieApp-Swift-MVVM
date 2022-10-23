@@ -7,61 +7,75 @@
 
 import Foundation
 
+
+enum Movietype: String {
+    case popular    = "popular"
+    case topRated   = "top_rated"
+    case upcoming   = "upcoming"
+    case latest     = "now_playing"
+}
+
 final class MainViewModel {
+    
+    lazy var serviceEndpoint: ServiceEndpoint = {
+        return ServiceEndpoint()
+    }()
     
     weak var mainVCOutPut : MainVCOutPut?
    
     var isLoading : Bool = false
     
+    func fetchPopularMovies(){
+        serviceEndpoint.getMovieData(movieType: Movietype.popular.rawValue, page: "1") { result in
+            switch result {
+            case .success(let data):
+                self.mainVCOutPut?.saveMovies(movieType: .popularMovies, list: data.results)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchTopRatedMovies(){
+        serviceEndpoint.getMovieData(movieType: Movietype.topRated.rawValue, page: "1") { result in
+            switch result {
+            case .success(let data):
+                self.mainVCOutPut?.saveMovies(movieType: .topRatedMovies, list: data.results)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchUpcomingMovies(){
+        serviceEndpoint.getMovieData(movieType: Movietype.upcoming.rawValue, page: "1") { result in
+            switch result {
+            case .success(let data):
+                self.mainVCOutPut?.saveMovies(movieType: .upcomingMovies, list: data.results)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func fetchLatestMovies(){
+        serviceEndpoint.getMovieData(movieType: Movietype.latest.rawValue, page: "1") { result in
+            self.changeLoading()
+            switch result {
+            case .success(let data):
+                self.mainVCOutPut?.saveMovies(movieType: .latestMovies, list: data.results)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func fetchData() {
-        
-        let dispathGroup = DispatchGroup()
         changeLoading()
-        //Get popular Movies
-        dispathGroup.enter()
-        NetworkManager.shared.getMovieData(serviceType: .popular) { movieInfo, error in
-            guard error == nil else {print(error!)
-                dispathGroup.leave()
-                return}
-            self.mainVCOutPut?.saveMovies(movieType: .popularMovies, list: movieInfo!)
-            dispathGroup.leave()
-        }
-        
-        //Get top Rated Movies
-        dispathGroup.enter()
-        NetworkManager.shared.getMovieData(serviceType: .topRated) { movieInfo, error in
-            guard error == nil else {print(error!)
-                dispathGroup.leave()
-                return}
-            self.mainVCOutPut?.saveMovies(movieType: .topRatedMovies, list: movieInfo!)
-            dispathGroup.leave()
-        }
-        
-        //Get top Rated Movies
-        dispathGroup.enter()
-        NetworkManager.shared.getMovieData(serviceType: .upcoming) { movieInfo, error in
-            guard error == nil else {print(error!)
-                dispathGroup.leave()
-                return}
-            self.mainVCOutPut?.saveMovies(movieType: .upcomingMovies, list: movieInfo!)
-            dispathGroup.leave()
-        }
-        
-        //Get Latest Movies
-        dispathGroup.enter()
-        NetworkManager.shared.getMovieData(serviceType: .latest) { movieInfo, error in
-            guard error == nil else {print(error!)
-                dispathGroup.leave()
-                return}
-            self.mainVCOutPut?.saveMovies(movieType: .latestMovies, list: movieInfo!)
-            dispathGroup.leave()
-        }
-        
-        
-        //UI updated on the main thread.
-        dispathGroup.notify(queue: .main) {
-            self.changeLoading()            
-        }
+        fetchPopularMovies()
+        fetchTopRatedMovies()
+        fetchUpcomingMovies()
+        fetchLatestMovies()
     }
     
     //change loading indicator scroll and reload collection view data.
