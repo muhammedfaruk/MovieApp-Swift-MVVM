@@ -9,8 +9,9 @@ import Foundation
 
 
 protocol MainViewModelInterface {
+    var homeTitle : String {get}
     var serviceEndpoint: ServiceEndpoint {get}
-    var collectionSectionList: [MovieSection] {get set}
+    var collectionSectionList: [MovieSection] {get}
     var popularMovieList   : [MovieInfo] {get}
     var topRatedMovieList  : [MovieInfo] {get}
     var upcomingMoviesList : [MovieInfo] {get}
@@ -31,7 +32,6 @@ protocol MainViewModelInterface {
 }
 
 final class MainViewModel: MainViewModelInterface {
-        
     var collectionSectionList: [MovieSection] = []
     
     var popularMovieList: [MovieInfo] = []
@@ -44,6 +44,8 @@ final class MainViewModel: MainViewModelInterface {
     }()
         
     weak var view : MainViewInterface?
+    
+    var homeTitle: String {"NetFilm"}
 }
 
 extension MainViewModel {
@@ -90,9 +92,9 @@ extension MainViewModel {
     
     func configureCells() {
         collectionSectionList = [MovieSection(movieList: popularMovieList, cellType: .popular, title: "Popular Movies"),
-                                 MovieSection(movieList: popularMovieList, cellType: .topRated, title: "Top Rated Movies"),
-                                 MovieSection(movieList: popularMovieList, cellType: .latest, title: "Lates Movies"),
-                                 MovieSection(movieList: popularMovieList, cellType: .upcoming, title: "Upcoming Movies")]
+                                 MovieSection(movieList: topRatedMovieList, cellType: .topRated, title: "Top Rated Movies"),
+                                 MovieSection(movieList: latestMoviesList, cellType: .latest, title: "Lates Movies"),
+                                 MovieSection(movieList: upcomingMoviesList, cellType: .upcoming, title: "Upcoming Movies")]
         view?.reloadData()
     }
 }

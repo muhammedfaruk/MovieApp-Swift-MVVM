@@ -16,17 +16,15 @@ protocol MainViewInterface: AnyObject {
     func endLoading()
 }
 
-class MainVC: UIViewController {
-    
+class MainVC: UIViewController, LoadingShowable{    
     var collectionView : UICollectionView!
                     
     lazy var viewModel : MainViewModel = MainViewModel()
-    
-    var activityIndicatorView = NVActivityIndicatorView(frame: .zero, type: .circleStrokeSpin, color: .systemRed, padding: 0)
        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        title = viewModel.homeTitle
         viewModel.view = self
         viewModel.viewDidLoad()
     }
@@ -56,11 +54,11 @@ extension MainVC: MainViewInterface {
     }
         
     func startLoading() {
-        
+        showLoading()
     }
     
     func endLoading() {
-        
+        hideLoading()
     }
 }
 
