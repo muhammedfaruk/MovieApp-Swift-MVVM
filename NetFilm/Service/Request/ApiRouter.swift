@@ -9,11 +9,10 @@ import Foundation
 import Alamofire
 
 
-enum ApiRouter: Endpoint {
+enum ApiRouter: ServiceEndpoint {
     case getMovieData(movieType: String, page:String)
     case getMovieDetail(id: Int, page:String)
     case getSimilarMovies(id: Int)
-    case user
 }
 
 extension ApiRouter {
@@ -27,7 +26,6 @@ extension ApiRouter {
         case .getMovieData: return .get
         case .getMovieDetail: return .get
         case .getSimilarMovies: return .get
-        case .user : return .get
         }
     }
     
@@ -38,7 +36,6 @@ extension ApiRouter {
         case .getMovieData(let movieType, _): return apiCommonPath + "\(movieType)"
         case .getMovieDetail(let id, _): return apiCommonPath + "\(id)"
         case .getSimilarMovies(let id): return apiCommonPath +  "\(id)/similar"
-        case .user: return "/users"
         }
     
     }
@@ -58,8 +55,6 @@ extension ApiRouter {
         case .getSimilarMovies(_):
             return ["api_key": ApiKey.apiKey,
                     "language": "en-US",]
-        case .user:
-            return [:]
         }
     }
             

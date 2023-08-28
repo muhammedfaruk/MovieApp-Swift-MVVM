@@ -22,6 +22,7 @@
 		5939E8F22A9D2DDA00945989 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939E8F12A9D2DDA00945989 /* LoadingView.swift */; };
 		5939E8F42A9D33CD00945989 /* AlertShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939E8F32A9D33CD00945989 /* AlertShowable.swift */; };
 		5939E8F62A9D342800945989 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939E8F52A9D342800945989 /* BaseViewController.swift */; };
+		5939E8F82A9D454D00945989 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939E8F72A9D454D00945989 /* ServiceEndpoint.swift */; };
 		59446AC027C276BD0027080E /* LatestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59446ABF27C276BD0027080E /* LatestCell.swift */; };
 		59446AC427C27CEE0027080E /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59446AC327C27CEE0027080E /* DetailVC.swift */; };
 		595575D127BD08DD003D54AC /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595575D027BD08DD003D54AC /* UIHelper.swift */; };
@@ -30,7 +31,7 @@
 		59698FA62905A94800145EA6 /* ServiceBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FA52905A94800145EA6 /* ServiceBase.swift */; };
 		59698FA92905AA1C00145EA6 /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FA82905AA1C00145EA6 /* ApiRouter.swift */; };
 		59698FAB2905AD8000145EA6 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FAA2905AD8000145EA6 /* ApiKey.swift */; };
-		59698FAD2905B3B300145EA6 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FAC2905B3B300145EA6 /* ServiceEndpoint.swift */; };
+		59698FAD2905B3B300145EA6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FAC2905B3B300145EA6 /* NetworkManager.swift */; };
 		59698FB22905B7B800145EA6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FB12905B7B800145EA6 /* String+.swift */; };
 		59698FB82905D38C00145EA6 /* UIimageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FB72905D38C00145EA6 /* UIimageView+.swift */; };
 		5978501827C4ED6F008B892E /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5978501727C4ED6F008B892E /* DetailViewModel.swift */; };
@@ -62,6 +63,7 @@
 		5939E8F12A9D2DDA00945989 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		5939E8F32A9D33CD00945989 /* AlertShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertShowable.swift; sourceTree = "<group>"; };
 		5939E8F52A9D342800945989 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5939E8F72A9D454D00945989 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
 		59446ABF27C276BD0027080E /* LatestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestCell.swift; sourceTree = "<group>"; };
 		59446AC327C27CEE0027080E /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		595575D027BD08DD003D54AC /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 		59698FA52905A94800145EA6 /* ServiceBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBase.swift; sourceTree = "<group>"; };
 		59698FA82905AA1C00145EA6 /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
 		59698FAA2905AD8000145EA6 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
-		59698FAC2905B3B300145EA6 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
+		59698FAC2905B3B300145EA6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		59698FB12905B7B800145EA6 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		59698FB72905D38C00145EA6 /* UIimageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIimageView+.swift"; sourceTree = "<group>"; };
 		5978501727C4ED6F008B892E /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
@@ -173,6 +175,16 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		5939E8F92A9D465600945989 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				59698FA82905AA1C00145EA6 /* ApiRouter.swift */,
+				5939E8F72A9D454D00945989 /* ServiceEndpoint.swift */,
+				59698FAC2905B3B300145EA6 /* NetworkManager.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		595575CE27BD08C8003D54AC /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,15 +231,6 @@
 				59698FAA2905AD8000145EA6 /* ApiKey.swift */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		59698FA72905A9CC00145EA6 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				59698FA82905AA1C00145EA6 /* ApiRouter.swift */,
-				59698FAC2905B3B300145EA6 /* ServiceEndpoint.swift */,
-			);
-			path = Request;
 			sourceTree = "<group>";
 		};
 		59E0152627BC3F4000D345F1 = {
@@ -278,8 +281,8 @@
 		59E0154D27BC4E2500D345F1 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5939E8F92A9D465600945989 /* Request */,
 				59698FA42905A93700145EA6 /* Base */,
-				59698FA72905A9CC00145EA6 /* Request */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				59698FA92905AA1C00145EA6 /* ApiRouter.swift in Sources */,
 				590895EE27C40BCD005FC93D /* MovieDetail.swift in Sources */,
 				59698FA62905A94800145EA6 /* ServiceBase.swift in Sources */,
+				5939E8F82A9D454D00945989 /* ServiceEndpoint.swift in Sources */,
 				5939E8F42A9D33CD00945989 /* AlertShowable.swift in Sources */,
 				59E0153527BC3F4000D345F1 /* SceneDelegate.swift in Sources */,
 				5978501827C4ED6F008B892E /* DetailViewModel.swift in Sources */,
@@ -443,7 +447,7 @@
 				590895F027C41025005FC93D /* MyBodyLabell.swift in Sources */,
 				59446AC027C276BD0027080E /* LatestCell.swift in Sources */,
 				59E0155227BC5D7100D345F1 /* PopularCell.swift in Sources */,
-				59698FAD2905B3B300145EA6 /* ServiceEndpoint.swift in Sources */,
+				59698FAD2905B3B300145EA6 /* NetworkManager.swift in Sources */,
 				595575D827BD177A003D54AC /* HeaderLabelCell.swift in Sources */,
 				5939E8EC2A9D275600945989 /* MovieCollectionModel.swift in Sources */,
 				5929310A27BFE3AF004E3D36 /* MyImage.swift in Sources */,

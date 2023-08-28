@@ -10,7 +10,7 @@ import Foundation
 
 protocol MainViewModelInterface {
     var homeTitle : String {get}
-    var serviceEndpoint: ServiceEndpoint {get}
+    var serviceEndpoint: NetworkManager {get}
     var collectionSectionList: [MovieSection] {get}
     var popularMovieList   : [MovieInfo] {get}
     var topRatedMovieList  : [MovieInfo] {get}
@@ -39,8 +39,8 @@ final class MainViewModel: MainViewModelInterface {
     var upcomingMoviesList: [MovieInfo] = []
     var latestMoviesList: [MovieInfo] = []
         
-    lazy var serviceEndpoint: ServiceEndpoint = {
-        return ServiceEndpoint()
+    lazy var serviceEndpoint: NetworkManager = {
+        return NetworkManager.shared
     }()
         
     weak var view : MainViewInterface?
@@ -59,9 +59,9 @@ extension MainViewModel {
     func fetchData() {
         view?.startLoading()
         getMovies(movieType: .popular)
-//        getMovies(movieType: .topRated)
-//        getMovies(movieType: .upcoming)
-//        getMovies(movieType: .latest)
+        getMovies(movieType: .topRated)
+        getMovies(movieType: .upcoming)
+        getMovies(movieType: .latest)
     }
     
     func getMovies(movieType: MovieType) {        

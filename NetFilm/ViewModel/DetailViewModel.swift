@@ -9,8 +9,8 @@ import Foundation
 
 final class DetailViewModel {
     
-    lazy var serviceEndpoint: ServiceEndpoint = {
-        return ServiceEndpoint()
+    lazy var serviceEndpoint: NetworkManager = {
+        return NetworkManager.shared
     }()
         
     weak var detailOutPut : DetailVCOutPut?
