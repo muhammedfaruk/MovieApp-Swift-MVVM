@@ -12,7 +12,7 @@ final class ServiceBase {
     private init() {}
     
     var baseURL:String {
-        return "https://api.themoviedb.org/3/movie/"
+        return "https://random-data-api.com/api/v2"
     }
     
     

@@ -31,9 +31,7 @@
 		59698FA92905AA1C00145EA6 /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FA82905AA1C00145EA6 /* ApiRouter.swift */; };
 		59698FAB2905AD8000145EA6 /* ApiKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FAA2905AD8000145EA6 /* ApiKey.swift */; };
 		59698FAD2905B3B300145EA6 /* ServiceEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FAC2905B3B300145EA6 /* ServiceEndpoint.swift */; };
-		59698FAF2905B55500145EA6 /* DataRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FAE2905B55500145EA6 /* DataRequest+.swift */; };
 		59698FB22905B7B800145EA6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FB12905B7B800145EA6 /* String+.swift */; };
-		59698FB62905C1D100145EA6 /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FB52905C1D100145EA6 /* URLRequest+.swift */; };
 		59698FB82905D38C00145EA6 /* UIimageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59698FB72905D38C00145EA6 /* UIimageView+.swift */; };
 		5978501827C4ED6F008B892E /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5978501727C4ED6F008B892E /* DetailViewModel.swift */; };
 		5978501A27C4F999008B892E /* SimilarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5978501927C4F999008B892E /* SimilarCell.swift */; };
@@ -73,9 +71,7 @@
 		59698FA82905AA1C00145EA6 /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
 		59698FAA2905AD8000145EA6 /* ApiKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKey.swift; sourceTree = "<group>"; };
 		59698FAC2905B3B300145EA6 /* ServiceEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceEndpoint.swift; sourceTree = "<group>"; };
-		59698FAE2905B55500145EA6 /* DataRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+.swift"; sourceTree = "<group>"; };
 		59698FB12905B7B800145EA6 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		59698FB52905C1D100145EA6 /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 		59698FB72905D38C00145EA6 /* UIimageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIimageView+.swift"; sourceTree = "<group>"; };
 		5978501727C4ED6F008B892E /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		5978501927C4F999008B892E /* SimilarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimilarCell.swift; sourceTree = "<group>"; };
@@ -230,8 +226,6 @@
 			children = (
 				59698FA82905AA1C00145EA6 /* ApiRouter.swift */,
 				59698FAC2905B3B300145EA6 /* ServiceEndpoint.swift */,
-				59698FAE2905B55500145EA6 /* DataRequest+.swift */,
-				59698FB52905C1D100145EA6 /* URLRequest+.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -433,9 +427,7 @@
 				59E0153327BC3F4000D345F1 /* AppDelegate.swift in Sources */,
 				5939E8F62A9D342800945989 /* BaseViewController.swift in Sources */,
 				5929310D27BFE574004E3D36 /* MyLabel.swift in Sources */,
-				59698FAF2905B55500145EA6 /* DataRequest+.swift in Sources */,
 				59698FA92905AA1C00145EA6 /* ApiRouter.swift in Sources */,
-				59698FB62905C1D100145EA6 /* URLRequest+.swift in Sources */,
 				590895EE27C40BCD005FC93D /* MovieDetail.swift in Sources */,
 				59698FA62905A94800145EA6 /* ServiceBase.swift in Sources */,
 				5939E8F42A9D33CD00945989 /* AlertShowable.swift in Sources */,

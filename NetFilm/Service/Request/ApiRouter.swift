@@ -8,84 +8,60 @@
 import Foundation
 import Alamofire
 
-protocol Requestable {
-    //var headers: [String: String] {get} -> if we need header we can use.
-    var path: String {get}
-    var method: HTTPMethod {get}
-}
 
-enum ApiRouter: Requestable {
+enum ApiRouter: Endpoint {
     case getMovieData(movieType: String, page:String)
     case getMovieDetail(id: Int, page:String)
     case getSimilarMovies(id: Int)
+    case user
 }
 
 extension ApiRouter {
+    
+    var headers: [String : String] {
+        return ["application/json": "Accept"]
+    }
     
     var method: HTTPMethod {
         switch self {
         case .getMovieData: return .get
         case .getMovieDetail: return .get
         case .getSimilarMovies: return .get
+        case .user : return .get
         }
     }
     
     var path: String {
-        
         let apiCommonPath:String = "/3/movie/"
         
         switch self {
         case .getMovieData(let movieType, _): return apiCommonPath + "\(movieType)"
         case .getMovieDetail(let id, _): return apiCommonPath + "\(id)"
         case .getSimilarMovies(let id): return apiCommonPath +  "\(id)/similar"
+        case .user: return "/users"
         }
     
     }
     
-    func asURLRequest() -> URLRequest {
-        guard var components = URLComponents(string: ServiceBase.shared.baseURL) else { fatalError("URLComponents cannot be created") }
-        
-        components.path = path
-        
-//        //Add Query Param        
-        if case .getMovieData(_, let page) = self {
-            components.queryItems = [URLQueryItem(name: "api_key", value: ApiKey.apiKey),
-                                      URLQueryItem(name: "language", value: "en-US"),
-                                      URLQueryItem(name: "page", value: page)]
-        }else if case .getMovieDetail(_, let page) = self {
-            components.queryItems = [URLQueryItem(name: "api_key", value: ApiKey.apiKey),
-                                     URLQueryItem(name: "language", value: "en-US"),
-                                     URLQueryItem(name: "page", value: page)]
-        }else if case .getSimilarMovies = self {
-            components.queryItems = [URLQueryItem(name: "api_key", value: ApiKey.apiKey),
-                                     URLQueryItem(name: "language", value: "en-US")]
-        }
-        
-        
-        
-        var request = URLRequest(url: components.url!)
-        request.httpMethod = method.rawValue
-        request.cachePolicy = .reloadIgnoringLocalCacheData
-        
-        // Common Headers
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        
-        
-        do {
+    var parameters: [String : Any] {
+        switch self {
+        case .getMovieData(_, let page):
+            return ["api_key": ApiKey.apiKey,
+                    "language": "en-US",
+                    "page": page]
             
-            switch self {
-                //URLEncoding without param
-            case .getMovieData, .getMovieDetail, .getSimilarMovies:
-                request = try Alamofire.URLEncoding.default.encode(request, with: nil)
-                break
-            }
+        case .getMovieDetail(_, let page):
+            return ["api_key": ApiKey.apiKey,
+                    "language": "en-US",
+                    "page": page]
             
-        } catch {
-            return request
+        case .getSimilarMovies(_):
+            return ["api_key": ApiKey.apiKey,
+                    "language": "en-US",]
+        case .user:
+            return [:]
         }
-                
-        return request
     }
-    
+            
 }
 
