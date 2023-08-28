@@ -10,13 +10,14 @@ import UIKit
 protocol MainViewInterface: AnyObject {        
     func configureCollectionView()
     func registerCollectionCells()
-    func reloadData()
     
+    func reloadData()
     func startLoading()
     func endLoading()
+    func showErrorMessage(message: String)
 }
 
-class MainVC: UIViewController, LoadingShowable{    
+class MainVC: BaseViewController {    
     var collectionView : UICollectionView!
                     
     lazy var viewModel : MainViewModel = MainViewModel()
@@ -32,7 +33,7 @@ class MainVC: UIViewController, LoadingShowable{
 
 // MARK: MainViewInterface
 extension MainVC: MainViewInterface {
-    
+   
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createLayouts())
         view.addSubview(collectionView)
@@ -60,6 +61,10 @@ extension MainVC: MainViewInterface {
     func endLoading() {
         hideLoading()
     }
+    
+    func showErrorMessage(message: String) {
+        showAlert(message: message)
+    }    
 }
 
 extension MainVC: UICollectionViewDataSource {

@@ -72,7 +72,7 @@ extension MainViewModel {
                 self.setMovieList(movieType: movieType, data: data)
                 self.configureCells()
             case .failure(let error):
-                print(error.localizedDescription)
+                self.view?.showErrorMessage(message: error.localizedDescription)
             }
         }
     }
