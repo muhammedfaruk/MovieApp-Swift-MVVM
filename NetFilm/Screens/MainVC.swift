@@ -6,57 +6,34 @@
 //
 
 import UIKit
-import NVActivityIndicatorView
 
-protocol MainVCOutPut: AnyObject {
-    func saveMovies(movieType:MovieTypes, list: [MovieInfo])
-    func changeLoadingAndReloadData(isLoading: Bool)
+protocol MainViewInterface: AnyObject {        
+    func configureCollectionView()
+    func registerCollectionCells()
+    func reloadData()
+    
+    func startLoading()
+    func endLoading()
 }
 
 class MainVC: UIViewController {
     
     var collectionView : UICollectionView!
-    
-    var collectionCells = [CellItem]()
-    
-    var popularMovieList   : [MovieInfo] = []
-    var topRatedMovieList  : [MovieInfo] = []
-    var upcomingMoviesList : [MovieInfo] = []
-    var latestMoviesList   : [MovieInfo] = []
-    
+                    
     lazy var viewModel : MainViewModel = MainViewModel()
     
     var activityIndicatorView = NVActivityIndicatorView(frame: .zero, type: .circleStrokeSpin, color: .systemRed, padding: 0)
-   
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        makeDarkModeAllView()
-        
-        viewModel.mainVCOutPut = self
-        viewModel.fetchData()
-        
-        configureCollectionView()
-        registerOurCells()
-        configureIndicatorView()
+        viewModel.view = self
+        viewModel.viewDidLoad()
     }
-      
-    
-    func configureCells(){
-        collectionCells = [CellItem(cellType: .popularMovies, movieList: popularMovieList),
-                           CellItem(cellType: .topRatedMovies, movieList: topRatedMovieList),
-                           CellItem(cellType: .latestMovies, movieList: latestMoviesList),
-                           CellItem(cellType: .upcomingMovies, movieList: upcomingMoviesList)]
-        collectionView.reloadData()
-    }
-    
-    func configureIndicatorView(){
-        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.pintoCenter(superView: view)
-    }
-   
+}
+
+// MARK: MainViewInterface
+extension MainVC: MainViewInterface {
     
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createLayouts())
@@ -66,102 +43,79 @@ class MainVC: UIViewController {
         collectionView.delegate = self
     }
     
-    func registerOurCells(){
+    func registerCollectionCells() {
         collectionView.register(PopularCell.self, forCellWithReuseIdentifier: PopularCell.reuseID)
         collectionView.register(TopRatedCell.self, forCellWithReuseIdentifier: TopRatedCell.reuseID)
         collectionView.register(UpcomingCell.self, forCellWithReuseIdentifier: UpcomingCell.reuseID)
         collectionView.register(LatestCell.self, forCellWithReuseIdentifier: LatestCell.reuseID)
         collectionView.register(HeaderLabelCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderLabelCell.reuseId)
     }
-            
-}
-
-// MARK: ViewModel OutPuts
-extension MainVC: MainVCOutPut {
-    
-    // save movies with type
-    func saveMovies(movieType: MovieTypes, list: [MovieInfo]) {
-        switch movieType {
-        case .popularMovies:
-            popularMovieList = list
-        case .topRatedMovies:
-            topRatedMovieList = list
-        case .upcomingMovies:
-            upcomingMoviesList = list
-        case .latestMovies:
-            latestMoviesList = list
-        }
-        configureCells()
-    }
-    
-    func changeLoadingAndReloadData(isLoading: Bool) {
-        if isLoading {
-            activityIndicatorView.startAnimating()
-            print("Yükleniyor..")
-        }else {
-            print("Yüklendi")
-            activityIndicatorView.stopAnimating()
-            collectionView.reloadData()
-        }
-    }
        
+    func reloadData(){
+        collectionView.reloadData()
+    }
+        
+    func startLoading() {
+        
+    }
+    
+    func endLoading() {
+        
+    }
 }
 
 extension MainVC: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return collectionCells.count
+        return viewModel.numberOfSections
     }
     
     // cell number for sections
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionCells[section].movieList.count
+        return viewModel.numberOfItemsInSection(sectionIndex: section)
     }
     
     // cells in sections
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let section = collectionCells[indexPath.section]
+        let section = viewModel.getSection(indexPath: indexPath)
         
         switch section.cellType {
-            
-        case .popularMovies:
+        case .popular:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.reuseID, for: indexPath) as! PopularCell
-            let movie = self.popularMovieList[indexPath.item]
+            let movie = viewModel.getMovie(indexPath: indexPath)
             cell.setup(movie: movie, itemIndex: (indexPath.item + 1))
             return cell
-        case .topRatedMovies:
+        case .topRated:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRatedCell.reuseID, for: indexPath) as! TopRatedCell
-            let movie = topRatedMovieList[indexPath.item]
+            let movie = viewModel.getMovie(indexPath: indexPath)
             cell.setup(movieInfo: movie)
             return cell
-        case .upcomingMovies:
+        case .upcoming:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingCell.reuseID, for: indexPath) as! UpcomingCell
-            let image = upcomingMoviesList[indexPath.item].posterPath
-            cell.setup(imagePath: image)
+            let movie = viewModel.getMovie(indexPath: indexPath)
+            cell.setup(imagePath: movie.posterPath)
             return cell
-        case .latestMovies:
+        case .latest:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LatestCell.reuseID, for: indexPath) as! LatestCell
-            let image = latestMoviesList[indexPath.item].posterPath
-            cell.setup(imagePath: image)
+            let movie = viewModel.getMovie(indexPath: indexPath)
+            cell.setup(imagePath: movie.posterPath)
             return cell
         }
     }
     
     // Headers for sections
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath:IndexPath) -> UICollectionReusableView {
         let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderLabelCell.reuseId, for: indexPath) as! HeaderLabelCell
-        headerCell.label.text = MovieTypes.allCases[indexPath.section].rawValue
+        headerCell.label.text = viewModel.getSectionTitle(indexPath: indexPath)
         return headerCell
     }
 }
 
 extension MainVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
         let detailVC = DetailVC()
-        detailVC.id = collectionCells[indexPath.section].movieList[indexPath.item].id
+        detailVC.id = viewModel.getMovieId(indexPath: indexPath)
         navigationController?.pushViewController(detailVC, animated: true)        
     }
 }

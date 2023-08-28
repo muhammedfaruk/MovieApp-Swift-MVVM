@@ -7,19 +7,6 @@
 
 import UIKit
 
-enum MovieTypes: String, CaseIterable {
-    case popularMovies  = "Popular Movies"
-    case topRatedMovies = "Top Rated Movies"
-    case upcomingMovies = "Upcoming Movies"
-    case latestMovies   = "Latest Movies"
-}
-
-struct CellItem {
-    let cellType: MovieTypes
-    let movieList: [MovieInfo]
-}
-
-
 enum UIHelper {
     //MARK: MainVC collectionView Layouts Settings
     static func createLayouts() -> UICollectionViewLayout {
