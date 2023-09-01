@@ -26,7 +26,7 @@ protocol MainViewModelInterface {
     func numberOfItemsInSection(sectionIndex: Int) -> Int
     func getSection(indexPath: IndexPath) -> MovieSection
     func getSectionTitle(indexPath: IndexPath) -> String
-    func getMovie(indexPath: IndexPath) -> MovieInfo
+    func getMovieAtIndexPath(indexPath: IndexPath) -> MovieInfo
 }
 
 final class MainViewModel: MainViewModelInterface {
@@ -116,7 +116,7 @@ extension MainViewModel {
         collectionSectionList[indexPath.section].title
     }
     
-    func getMovie(indexPath: IndexPath) -> MovieInfo {
+    func getMovieAtIndexPath(indexPath: IndexPath) -> MovieInfo {
         let sectionType = getSection(indexPath: indexPath).cellType
         
         switch sectionType {

@@ -83,26 +83,24 @@ extension MainVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let section = viewModel.getSection(indexPath: indexPath)
+        let movie = viewModel.getMovieAtIndexPath(indexPath: indexPath)
         
         switch section.cellType {
         case .popular:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCell.reuseID, for: indexPath) as! PopularCell
-            let movie = viewModel.getMovie(indexPath: indexPath)
             cell.setup(movie: movie, itemIndex: (indexPath.item + 1))
             return cell
         case .topRated:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRatedCell.reuseID, for: indexPath) as! TopRatedCell
-            let movie = viewModel.getMovie(indexPath: indexPath)
             cell.setup(movieInfo: movie)
             return cell
         case .upcoming:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingCell.reuseID, for: indexPath) as! UpcomingCell
-            let movie = viewModel.getMovie(indexPath: indexPath)
             cell.setup(imagePath: movie.posterPath)
             return cell
         case .latest:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LatestCell.reuseID, for: indexPath) as! LatestCell
-            let movie = viewModel.getMovie(indexPath: indexPath)
+            
             cell.setup(imagePath: movie.posterPath)
             return cell
         }

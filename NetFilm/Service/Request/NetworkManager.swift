@@ -15,8 +15,6 @@ enum CustomNetworkError: Error {
 
 protocol NetworkManagerProtocol {
     func performRequest<T : Decodable>(type: T.Type, endpoint:ServiceEndpoint, completion: @escaping ((Result<T, CustomNetworkError>)->Void))
-    func getMovieDetail(id: Int, page:String, completionHandler: @escaping (Result<MovieDetail, CustomNetworkError>) -> Void)
-    func getSimilarMovies(id: Int, completionHandler: @escaping (Result<MovieData, CustomNetworkError>) -> Void)
 }
 
 class NetworkManager {
@@ -42,21 +40,6 @@ class NetworkManager {
                 case .failure(let error):
                     completion(.failure(.message(error.localizedDescription)))
                 }
-            }
-        
-        
+            }                
     }
 }
-
-extension NetworkManager {
-    func getMovieDetail(id: Int, page:String, completionHandler: @escaping (Result<MovieDetail, CustomNetworkError>) -> Void) {
-        let request = ApiRouter.getMovieDetail(id: id, page: page)
-        performRequest(type: MovieDetail.self, endpoint: request, completion: completionHandler)
-    }
-    
-    func getSimilarMovies(id: Int, completionHandler: @escaping (Result<MovieData, CustomNetworkError>) -> Void) {
-        let request = ApiRouter.getSimilarMovies(id: id)
-        performRequest(type: MovieData.self, endpoint: request, completion: completionHandler)
-    }
-}
-
