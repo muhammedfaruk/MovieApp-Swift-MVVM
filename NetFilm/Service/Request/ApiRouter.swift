@@ -18,7 +18,7 @@ enum ApiRouter: ServiceEndpoint {
 extension ApiRouter {
     
     var headers: [String : String] {
-        return ["application/json": "Accept"]
+        return ["Accept": "application/json"]
     }
     
     var method: HTTPMethod {
