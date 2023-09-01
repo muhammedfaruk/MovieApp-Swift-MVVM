@@ -10,7 +10,7 @@ import Foundation
 
 protocol MainViewModelInterface {
     var homeTitle : String {get}
-    var serviceEndpoint: NetworkManager {get}
+    var service: MainServiceProtocol? {get}
     var collectionSectionList: [MovieSection] {get}
     var popularMovieList   : [MovieInfo] {get}
     var topRatedMovieList  : [MovieInfo] {get}
@@ -20,10 +20,8 @@ protocol MainViewModelInterface {
         
     func viewDidLoad()
     func fetchData()
-    
     func getMovies(movieType: MovieType)
     func setMovieList(movieType: MovieType, data: MovieData)
-    
     func configureCells()
     func numberOfItemsInSection(sectionIndex: Int) -> Int
     func getSection(indexPath: IndexPath) -> MovieSection
@@ -32,18 +30,18 @@ protocol MainViewModelInterface {
 }
 
 final class MainViewModel: MainViewModelInterface {
-    var collectionSectionList: [MovieSection] = []
-    
+    var collectionSectionList: [MovieSection] = []    
     var popularMovieList: [MovieInfo] = []
     var topRatedMovieList: [MovieInfo] = []
     var upcomingMoviesList: [MovieInfo] = []
     var latestMoviesList: [MovieInfo] = []
         
-    lazy var serviceEndpoint: NetworkManager = {
-        return NetworkManager.shared
-    }()
-        
+    var service: MainServiceProtocol?
     weak var view : MainViewInterface?
+    
+    init(service: MainServiceProtocol) {
+        self.service = service
+    }
     
     var homeTitle: String {"NetFilm"}
 }
@@ -64,17 +62,17 @@ extension MainViewModel {
         getMovies(movieType: .latest)
     }
     
-    func getMovies(movieType: MovieType) {        
-        serviceEndpoint.getMovieData(movieType: movieType.rawValue, page: "1") { result in
+    func getMovies(movieType: MovieType) {
+        service?.getMovieData(movieType: movieType.rawValue, page: "1", completionHandler: { result in
             self.view?.endLoading()
             switch result {
-            case .success(let data):                
+            case .success(let data):
                 self.setMovieList(movieType: movieType, data: data)
                 self.configureCells()
             case .failure(let error):
                 self.view?.showErrorMessage(message: error.localizedDescription)
             }
-        }
+        })
     }
 
     func setMovieList(movieType: MovieType, data: MovieData) {

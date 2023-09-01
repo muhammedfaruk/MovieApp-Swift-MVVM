@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 protocol MainViewInterface: AnyObject {        
     func configureCollectionView()
     func registerCollectionCells()
@@ -20,7 +21,7 @@ protocol MainViewInterface: AnyObject {
 class MainVC: BaseViewController {    
     var collectionView : UICollectionView!
                     
-    lazy var viewModel : MainViewModel = MainViewModel()
+    lazy var viewModel : MainViewModel = MainViewModel(service: MainService())
        
     override func viewDidLoad() {
         super.viewDidLoad()
