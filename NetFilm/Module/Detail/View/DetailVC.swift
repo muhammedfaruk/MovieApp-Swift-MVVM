@@ -19,7 +19,6 @@ protocol DetailVCInterface: AnyObject {
 }
 
 class DetailVC: BaseViewController {
-    
     var id : Int = 0
     lazy var viewModel = DetailViewModel(service: MovieDetailService(), movieId: id)
 

@@ -24,7 +24,13 @@ class NetworkManager {
         AF.request(endpoint.url, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: HTTPHeaders(endpoint.headers))
             .validate()
             .response { response in
-                print("request url: \(String(describing: response.request?.url))")
+                
+                print("** URL **: \(String(describing: response.request?.url))")
+                print("** HEADER **: \(String(describing: response.request?.headers))")
+                if response.request?.httpBody != nil {
+                    print("** BODY **: \(String(describing: response.request?.httpBody))")
+                }
+                
                 switch response.result {
                 case .success(let data):
                     guard let data = data else {
@@ -40,6 +46,6 @@ class NetworkManager {
                 case .failure(let error):
                     completion(.failure(.message(error.localizedDescription)))
                 }
-            }                
+            }
     }
 }

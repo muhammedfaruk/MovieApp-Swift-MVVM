@@ -19,7 +19,6 @@ protocol DetailViewModelInterface {
 }
 
 final class DetailViewModel {
-    
     var movieId: Int
     var similarMovies: [MovieInfo] = []
     var movieDetail: MovieDetail?
@@ -37,7 +36,7 @@ extension DetailViewModel: DetailViewModelInterface {
     
     func viewDidLoad() {
         fetchDetail()
-        fetchSimilarMovies()
+        //fetchSimilarMovies()
         view?.configureHeaderView()
         view?.configureCollectionView()
     }
@@ -49,7 +48,6 @@ extension DetailViewModel: DetailViewModelInterface {
             switch result {
             case .success(let detail):
                 self.movieDetail = detail
-                self.view?.reloadData()
                 self.view?.configureDetailUIElement()
             case .failure(let error):
                 print(error.localizedDescription)
@@ -63,6 +61,7 @@ extension DetailViewModel: DetailViewModelInterface {
             switch result {
             case .success(let data):
                 self.similarMovies = data.results
+                self.view?.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
