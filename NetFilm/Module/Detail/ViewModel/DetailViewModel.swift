@@ -50,7 +50,7 @@ extension DetailViewModel: DetailViewModelInterface {
                 self.movieDetail = detail
                 self.view?.configureDetailUIElement()
             case .failure(let error):
-                print(error.localizedDescription)
+                self.view?.showErrorMessage(message: error.localizedDescription)
             }
 
         }
@@ -63,7 +63,7 @@ extension DetailViewModel: DetailViewModelInterface {
                 self.similarMovies = data.results
                 self.view?.reloadData()
             case .failure(let error):
-                print(error.localizedDescription)
+                self.view?.showErrorMessage(message: error.localizedDescription)
             }
         }
     }

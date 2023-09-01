@@ -48,9 +48,7 @@ extension ApiRouter {
                     "page": page]
             
         case .getMovieDetail(_, let page):
-            return ["api_key": ApiKey.apiKey,
-                    "language": "en-US",
-                    "page": page]
+            return ["api_key": ApiKey.apiKey]
             
         case .getSimilarMovies(_):
             return ["api_key": ApiKey.apiKey,

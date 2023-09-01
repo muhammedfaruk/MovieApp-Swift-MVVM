@@ -21,11 +21,14 @@ class NetworkManager {
     static let shared = NetworkManager()
     private init() {}
     func performRequest<T : Decodable>(type: T.Type, endpoint:ServiceEndpoint, completion: @escaping ((Result<T, CustomNetworkError>)->Void)) {
+        
+        print("** URL **: \(endpoint.url)")
+        print("** URL **: \(endpoint.parameters)")
+        
         AF.request(endpoint.url, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: HTTPHeaders(endpoint.headers))
             .validate()
             .response { response in
                 
-                print("** URL **: \(String(describing: response.request?.url))")
                 print("** HEADER **: \(String(describing: response.request?.headers))")
                 if response.request?.httpBody != nil {
                     print("** BODY **: \(String(describing: response.request?.httpBody))")
