@@ -11,14 +11,15 @@ import Alamofire
 protocol ServiceEndpoint {
     var path: String { get }
     var method: HTTPMethod { get }
-    var headers: [String: String] { get}
-    var parameters: [String: Any] { get }
-    var encoding: ParameterEncoding { get }
+    var headers: [String: String] {get}
+    var parameters: [String: Any] {get}
+    var queryItems: [URLQueryItem] {get}
+    var encoding: ParameterEncoding {get}
 }
 
 extension ServiceEndpoint {
     var headers: [String: String] { [:] }
-    var parameters: [String: Any] { [:] }
+    var parameters: [String: Any] { [:] }    
     var url: String { "\(ServiceBase.shared.baseURL)\(path)"}
 }
 

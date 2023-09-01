@@ -39,22 +39,16 @@ extension ApiRouter {
         }
     
     }
-    
-    var parameters: [String : Any] {
+         
+    var queryItems: [URLQueryItem] {
         switch self {
-        case .getMovieData(_, let page):
-            return ["api_key": ApiKey.apiKey,
-                    "language": "en-US",
-                    "page": page]
-            
-        case .getMovieDetail(_, let page):
-            return ["api_key": ApiKey.apiKey]
-            
-        case .getSimilarMovies(_):
-            return ["api_key": ApiKey.apiKey,
-                    "language": "en-US",]
+        case .getMovieData(_, page: let page), .getMovieDetail(_, page: let page):
+            return [URLQueryItem(name: "api_key", value: ApiKey.apiKey),
+                    URLQueryItem(name: "language", value: "en-US"),
+                    URLQueryItem(name: "page", value: page)]
+        case .getSimilarMovies(id: _):
+            return [URLQueryItem(name: "api_key", value: ApiKey.apiKey)]
         }
     }
-            
 }
 

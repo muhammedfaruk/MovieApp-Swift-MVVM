@@ -37,11 +37,11 @@ class DetailVCHeaderVC: UIViewController {
     }
     
     func set(){
-        genre.setLabelText(text: detail.genres[0].name, systemImage: "tag")
-        runTime.setLabelText(text: timeConverter(runtime: detail.runtime), systemImage: "clock")
-        date.setLabelText(text: dateConverter(date: detail.releaseDate), systemImage: "calendar")
+        genre.setLabelText(text: detail.genres?[0].name ?? "", systemImage: "tag")
+        runTime.setLabelText(text: timeConverter(runtime: detail.runtime ?? 0), systemImage: "clock")
+        date.setLabelText(text: dateConverter(date: detail.releaseDate ?? ""), systemImage: "calendar")
         overViewLabel.text = detail.overview
-        posterImage.downloadImage(posterPath: detail.posterPath)
+        posterImage.downloadImage(posterPath: detail.posterPath ?? "")
         titleLabel.text = detail.title
     }
     

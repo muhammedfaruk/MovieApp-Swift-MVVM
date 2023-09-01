@@ -22,13 +22,22 @@ class NetworkManager {
     private init() {}
     func performRequest<T : Decodable>(type: T.Type, endpoint:ServiceEndpoint, completion: @escaping ((Result<T, CustomNetworkError>)->Void)) {
         
-        print("** URL **: \(endpoint.url)")
-        print("** URL **: \(endpoint.parameters)")
+        var urlComponents = URLComponents(string: endpoint.url)!
+        urlComponents.queryItems = endpoint.queryItems
         
-        AF.request(endpoint.url, method: endpoint.method, parameters: endpoint.parameters, encoding: endpoint.encoding, headers: HTTPHeaders(endpoint.headers))
+        var request = URLRequest(url: urlComponents.url!)
+        request.httpMethod = endpoint.method.rawValue
+        
+        if !endpoint.parameters.isEmpty {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: endpoint.parameters)
+        }
+
+        request.allHTTPHeaderFields = endpoint.headers
+        
+        AF.request(request)
             .validate()
             .response { response in
-                
+                print("** HEADER **: \(String(describing: response.request?.url))")
                 print("** HEADER **: \(String(describing: response.request?.headers))")
                 if response.request?.httpBody != nil {
                     print("** BODY **: \(String(describing: response.request?.httpBody))")
