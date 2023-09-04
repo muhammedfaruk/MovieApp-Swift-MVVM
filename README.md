@@ -1,8 +1,6 @@
 # Libraries
-
 1. Alamofire
-2. UIFontComplete
-3. NVActivityIndicatorView
+
 
 # Pattern
 - MVVM
