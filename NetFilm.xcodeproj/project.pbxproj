@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2844EB64570DAAB6580D3289 /* Pods_NetFilm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47BB6AE61BDB2CEF9A5A0943 /* Pods_NetFilm.framework */; };
+		5907501F2AA66D1C00EDBA37 /* NetFilmTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5907501E2AA66D1C00EDBA37 /* NetFilmTests.swift */; };
+		590750262AA66D6F00EDBA37 /* MockMainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590750252AA66D6F00EDBA37 /* MockMainService.swift */; };
+		590750282AA66E4B00EDBA37 /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596DAD232AA28A81008128BF /* MainService.swift */; };
 		590895E827C40206005FC93D /* DetailVCHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590895E727C40206005FC93D /* DetailVCHeaderVC.swift */; };
 		590895EA27C40914005FC93D /* DetailHeaderContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590895E927C40914005FC93D /* DetailHeaderContentView.swift */; };
 		590895EE27C40BCD005FC93D /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590895ED27C40BCD005FC93D /* MovieDetail.swift */; };
@@ -49,9 +52,22 @@
 		59E0155227BC5D7100D345F1 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E0155127BC5D7100D345F1 /* PopularCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		590750202AA66D1C00EDBA37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 59E0152727BC3F4000D345F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 59E0152E27BC3F4000D345F1;
+			remoteInfo = NetFilm;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		190C5404ED5450D4C599C686 /* Pods-NetFilm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetFilm.release.xcconfig"; path = "Target Support Files/Pods-NetFilm/Pods-NetFilm.release.xcconfig"; sourceTree = "<group>"; };
 		47BB6AE61BDB2CEF9A5A0943 /* Pods_NetFilm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetFilm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5907501C2AA66D1C00EDBA37 /* NetFilmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetFilmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5907501E2AA66D1C00EDBA37 /* NetFilmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFilmTests.swift; sourceTree = "<group>"; };
+		590750252AA66D6F00EDBA37 /* MockMainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainService.swift; sourceTree = "<group>"; };
 		590895E727C40206005FC93D /* DetailVCHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVCHeaderVC.swift; sourceTree = "<group>"; };
 		590895E927C40914005FC93D /* DetailHeaderContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderContentView.swift; sourceTree = "<group>"; };
 		590895ED27C40BCD005FC93D /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
@@ -97,6 +113,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		590750192AA66D1C00EDBA37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		59E0152C27BC3F4000D345F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,6 +137,23 @@
 				47BB6AE61BDB2CEF9A5A0943 /* Pods_NetFilm.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5907501D2AA66D1C00EDBA37 /* NetFilmTests */ = {
+			isa = PBXGroup;
+			children = (
+				590750272AA66E2A00EDBA37 /* Mocks */,
+				5907501E2AA66D1C00EDBA37 /* NetFilmTests.swift */,
+			);
+			path = NetFilmTests;
+			sourceTree = "<group>";
+		};
+		590750272AA66E2A00EDBA37 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				590750252AA66D6F00EDBA37 /* MockMainService.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		590895EB27C40917005FC93D /* View */ = {
@@ -323,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				59E0153127BC3F4000D345F1 /* NetFilm */,
+				5907501D2AA66D1C00EDBA37 /* NetFilmTests */,
 				59E0153027BC3F4000D345F1 /* Products */,
 				6DBD5731ECED48EC8EE6CF30 /* Pods */,
 				4FBB1672A811B6E2454416B9 /* Frameworks */,
@@ -333,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				59E0152F27BC3F4000D345F1 /* NetFilm.app */,
+				5907501C2AA66D1C00EDBA37 /* NetFilmTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -385,6 +427,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5907501B2AA66D1C00EDBA37 /* NetFilmTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 590750242AA66D1C00EDBA37 /* Build configuration list for PBXNativeTarget "NetFilmTests" */;
+			buildPhases = (
+				590750182AA66D1C00EDBA37 /* Sources */,
+				590750192AA66D1C00EDBA37 /* Frameworks */,
+				5907501A2AA66D1C00EDBA37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				590750212AA66D1C00EDBA37 /* PBXTargetDependency */,
+			);
+			name = NetFilmTests;
+			productName = NetFilmTests;
+			productReference = 5907501C2AA66D1C00EDBA37 /* NetFilmTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		59E0152E27BC3F4000D345F1 /* NetFilm */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 59E0154327BC3F4100D345F1 /* Build configuration list for PBXNativeTarget "NetFilm" */;
@@ -411,9 +471,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					5907501B2AA66D1C00EDBA37 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 59E0152E27BC3F4000D345F1;
+					};
 					59E0152E27BC3F4000D345F1 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -433,11 +497,19 @@
 			projectRoot = "";
 			targets = (
 				59E0152E27BC3F4000D345F1 /* NetFilm */,
+				5907501B2AA66D1C00EDBA37 /* NetFilmTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5907501A2AA66D1C00EDBA37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		59E0152D27BC3F4000D345F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +564,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		590750182AA66D1C00EDBA37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				590750262AA66D6F00EDBA37 /* MockMainService.swift in Sources */,
+				5907501F2AA66D1C00EDBA37 /* NetFilmTests.swift in Sources */,
+				590750282AA66E4B00EDBA37 /* MainService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		59E0152B27BC3F4000D345F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,6 +620,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		590750212AA66D1C00EDBA37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 59E0152E27BC3F4000D345F1 /* NetFilm */;
+			targetProxy = 590750202AA66D1C00EDBA37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		59E0153D27BC3F4100D345F1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -550,6 +640,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		590750222AA66D1C00EDBA37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NWVGLJCR5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.net.NetFilmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetFilm.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NetFilm";
+			};
+			name = Debug;
+		};
+		590750232AA66D1C00EDBA37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NWVGLJCR5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.net.NetFilmTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NetFilm.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/NetFilm";
+			};
+			name = Release;
+		};
 		59E0154127BC3F4100D345F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -727,6 +857,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		590750242AA66D1C00EDBA37 /* Build configuration list for PBXNativeTarget "NetFilmTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				590750222AA66D1C00EDBA37 /* Debug */,
+				590750232AA66D1C00EDBA37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		59E0152A27BC3F4000D345F1 /* Build configuration list for PBXProject "NetFilm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
