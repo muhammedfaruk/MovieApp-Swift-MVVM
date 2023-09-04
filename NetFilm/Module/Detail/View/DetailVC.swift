@@ -18,13 +18,21 @@ protocol DetailVCInterface: AnyObject {
     func configureDetailUIElement()
 }
 
-class DetailVC: BaseViewController {
-    var id : Int = 0
-    lazy var viewModel = DetailViewModel(service: MovieDetailService(), movieId: id)
+final class DetailVC: BaseViewController {
+    var viewModel: DetailViewModel!
 
     let headerView = UIView()
     var collectionView : UICollectionView!
     var similarMovieTitle = MyLabel(textSize: 30, color: .white, alignment: .left)
+    
+    init(viewModel: DetailViewModel) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,8 +125,9 @@ extension DetailVC: UICollectionViewDataSource {
 //MARK: - UICollectionViewDelegate
 extension DetailVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = DetailVC()
-        detailVC.id = viewModel.similarMovieAtIndexPath(indexPath: indexPath).id
+        let id = viewModel.similarMovieAtIndexPath(indexPath: indexPath).id
+        let detailViewModel = DetailViewModel(service: MovieDetailService(), movieId: id)
+        let detailVC = DetailVC(viewModel: detailViewModel)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

@@ -29,7 +29,7 @@ protocol MainViewModelInterface {
     func getMovieAtIndexPath(indexPath: IndexPath) -> MovieInfo
 }
 
-final class MainViewModel: MainViewModelInterface {
+final class MainViewModel {
     var collectionSectionList: [MovieSection] = []    
     var popularMovieList: [MovieInfo] = []
     var topRatedMovieList: [MovieInfo] = []
@@ -46,7 +46,7 @@ final class MainViewModel: MainViewModelInterface {
     var homeTitle: String {"NetFilm"}
 }
 
-extension MainViewModel {
+extension MainViewModel: MainViewModelInterface {
     
     func viewDidLoad() {
         fetchData()

@@ -18,7 +18,7 @@ protocol MainViewInterface: AnyObject {
     func showErrorMessage(message: String)
 }
 
-class MainVC: BaseViewController {    
+final class MainVC: BaseViewController {
     var collectionView : UICollectionView!
                     
     lazy var viewModel : MainViewModel = MainViewModel(service: MainService())
@@ -116,8 +116,9 @@ extension MainVC: UICollectionViewDataSource {
 
 extension MainVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = DetailVC()
-        detailVC.id = viewModel.getMovieId(indexPath: indexPath)
+        let id = viewModel.getMovieId(indexPath: indexPath)
+        let detailViewModel = DetailViewModel(service: MovieDetailService(), movieId: id)
+        let detailVC = DetailVC(viewModel: detailViewModel)        
         navigationController?.pushViewController(detailVC, animated: true)        
     }
 }
