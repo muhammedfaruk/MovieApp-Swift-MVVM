@@ -19,13 +19,13 @@ protocol DetailVCInterface: AnyObject {
 }
 
 final class DetailVC: BaseViewController {
-    var viewModel: DetailViewModel!
+    var viewModel: DetailViewModelInterface!
 
     let headerView = UIView()
     var collectionView : UICollectionView!
     var similarMovieTitle = MyLabel(textSize: 30, color: .white, alignment: .left)
     
-    init(viewModel: DetailViewModel) {
+    init(viewModel: DetailViewModelInterface) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }

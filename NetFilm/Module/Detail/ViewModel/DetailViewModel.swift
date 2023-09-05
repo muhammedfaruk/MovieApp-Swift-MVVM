@@ -8,6 +8,7 @@
 import Foundation
 
 protocol DetailViewModelInterface {
+    var view: DetailVCInterface? {get set}
     var service: MovieDetailServiceProtocol? {get}
     var movieId: Int {get}
     var similarMovies: [MovieInfo] {get}
