@@ -5,6 +5,11 @@
 # Pattern
 - MVVM
 
+# TODOs
+- Unit Tests
+- Error Handling
+- Add Favorite
+
 # Screenshots
 
 
